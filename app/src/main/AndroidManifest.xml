@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- exported = false limits access to this ContentProvider to only this app -->
+        <provider
+            android:authorities="com.example.pranaybansal.contentproviderexample"
+            android:name="com.example.pranaybansal.contentproviderexample.data.EmpContentProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

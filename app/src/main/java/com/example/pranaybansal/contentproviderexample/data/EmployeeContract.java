@@ -7,6 +7,9 @@ import android.provider.BaseColumns;
  * Created by Pranay Bansal on 11/6/2017.
  */
 
+/**
+ * Always create a contract class as it provides the structure of your table to other app developers.
+ */
 public class EmployeeContract {
 
     public static final String AUTHORITY = "com.example.pranaybansal.contentproviderexample";

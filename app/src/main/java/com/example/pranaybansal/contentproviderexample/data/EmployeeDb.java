@@ -30,7 +30,7 @@ public class EmployeeDb extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "CREATE TABLE "+ EmployeeContract.EmployeeDetails.TABLE_NAME + "("+
                         EmployeeContract.EmployeeDetails.COLUMN_NAME + " TEXT,"+
-                        EmployeeContract.EmployeeDetails.COLUMN_EMPNO + " TEXT;)";
+                        EmployeeContract.EmployeeDetails.COLUMN_EMPNO + " TEXT);";
         sqLiteDatabase.execSQL(query);
     }
 

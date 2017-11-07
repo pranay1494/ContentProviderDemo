@@ -79,7 +79,20 @@ public class EmpContentProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        SQLiteDatabase db = employeeDb.getWritableDatabase();
+        int type = matcher.match(uri);
+
+        int delete;
+        if (type == EMP_NO){
+            delete = db.delete(EmployeeContract.EmployeeDetails.TABLE_NAME, s, strings);
+        }else{
+            throw new UnsupportedOperationException("not supported");
+        }
+        //if any row is deleted then only notify the resolver.
+        if (delete != 0){
+            getContext().getContentResolver().notifyChange(uri,null);
+        }
+        return delete;
     }
 
     @Override

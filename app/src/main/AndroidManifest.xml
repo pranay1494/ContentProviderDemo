@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <!-- exported = false limits access to this ContentProvider to only this app -->
+        <!--name contains the full path of your content provider ie., both package name followed by class name-->
+        <!--authority contains the package name-->
         <provider
             android:authorities="com.example.pranaybansal.contentproviderexample"
             android:name="com.example.pranaybansal.contentproviderexample.data.EmpContentProvider"

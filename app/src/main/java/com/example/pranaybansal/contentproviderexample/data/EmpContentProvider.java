@@ -35,14 +35,20 @@ public class EmpContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
-        return null;
+        SQLiteDatabase db = employeeDb.getReadableDatabase();
+        Cursor returnCursor= null;
+        int type = matcher.match(uri);
+        if (type == EMPLOYEES){
+            returnCursor = db.query(EmployeeContract.EmployeeDetails.TABLE_NAME, strings, s, strings1, null, null, s1);
+        }else{
+            throw new UnsupportedOperationException("Not supported");
+        }
+        returnCursor.setNotificationUri(getContext().getContentResolver(),uri);
+        return returnCursor;
     }
 
     /**
      * used to return the mime type of data queried.
-     *
-     * @param uri
-     * @return
      */
     @Nullable
     @Override
@@ -66,6 +72,7 @@ public class EmpContentProvider extends ContentProvider {
         } else {
             //error throw exception.
         }
+        //notify resolver that datasource has been changed.
         getContext().getContentResolver().notifyChange(uri, null);
         return returnUri;
     }
